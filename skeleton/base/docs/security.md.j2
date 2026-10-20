@@ -1,0 +1,29 @@
+# Security — {{ name }}
+
+## Assumptions
+
+- Local development uses `.env` for secrets; `.env.example` lists names only.
+- Risk posture at init: **{{ risk }}**.
+{% if risk == "commercial" %}
+- Commercial posture: keep architecture and security docs honest; treat authz, payments, and PII carefully.
+{% endif %}
+
+## Sensitive areas
+
+{% if sensitive and sensitive != ["none"] %}
+Seeded at init (update as the product evolves):
+
+{% for domain in sensitive if domain != "none" %}
+- {{ domain }}
+{% endfor %}
+
+Follow the SES sensitive path: plan with `risk: sensitive`, human approval before implement, security checklist on review. See kit `standards/security-baseline.md`.
+{% else %}
+None flagged at init. If you add auth, payments, PII, crypto/secrets, destructive data ops, or production config access, treat changes as **sensitive**.
+{% endif %}
+
+## Don't
+
+- Paste production secrets into chat or commit `.env`
+- Weaken authz casually
+- Touch production or run destructive ops without explicit human approval

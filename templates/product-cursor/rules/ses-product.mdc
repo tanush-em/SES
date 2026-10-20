@@ -1,0 +1,14 @@
+---
+description: SES conventions for a product repository using ses-cli
+alwaysApply: true
+---
+
+# SES Product Conventions
+
+- This repo is a **product**, not the SES kit. Install the toolkit with `pip install ses-cli`.
+- After clone: `pip install ses-cli && ses setup` (add `--docs` for `.ses/standards/`).
+- Commit product truth: app source, `ses.toml`, `.env.example`, your `docs/`. Gitignore regenerable SES Cursor files (see `.gitignore`); restore with `ses setup`.
+- Run `ses check` from the product root when `ses.toml` exists.
+- Secrets only in `.env` (gitignored). Never commit secrets.
+- Tiny ≠ normal ≠ sensitive — see standards (via `ses setup --docs` or the kit).
+- Do not create cloud resources or touch production without explicit human approval.

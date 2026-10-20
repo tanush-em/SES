@@ -1,0 +1,30 @@
+# Architecture — {{ name }}
+
+{{ purpose }}
+
+## Layout
+
+{% if has_python %}
+- `backend/` — Python application{% if has_api and has_python %} (includes HTTP API){% endif %}
+{% endif %}
+{% if has_lib %}
+- `lib/` — TypeScript library / shared code
+{% endif %}
+{% if has_ts_api %}
+- `server/` — TypeScript HTTP API
+{% endif %}
+{% if has_ui %}
+- `web/` — Vite + React UI
+{% endif %}
+{% if has_db %}
+- Data: SQLite (see `DATABASE_URL` in `.env.example`). Graduate to Postgres only when concurrent writers, locking, or ops needs require it.
+{% endif %}
+
+## Main flows
+
+Describe request paths and data changes here as the product grows.
+
+## Boundaries
+
+- Secrets stay in `.env` (gitignored); never commit them.
+- Prefer a modular monolith; do not add brokers/vector DBs/Redis unless a stated requirement needs them.

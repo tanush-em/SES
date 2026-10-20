@@ -1,0 +1,13 @@
+---
+description: Core SES operating principles for product work
+alwaysApply: true
+---
+
+# SES Principles
+
+- Follow SES standards (`.ses/standards/` after `ses setup --docs`, or the installed kit). Prefer the **smallest change** that works.
+- Evidence over confidence: report command output or a short verification note. Never claim checks passed without running them.
+- Human owns requirements, risk, remotes, PRs, and production. Agents recommend; they do not authorize destructive or prod actions.
+- Risk-based rigor: tiny ≠ normal ≠ sensitive — see `definition-of-done` in standards.
+- SES must stay smaller than the products it helps. No hooks dependency; no GitHub Actions as a SES feature. Local `ses check` when configured.
+- For features: invoke `/feature-planning` → `/feature-implementation` → `/independent-review` deliberately. Skip full ceremony for tiny fixes.

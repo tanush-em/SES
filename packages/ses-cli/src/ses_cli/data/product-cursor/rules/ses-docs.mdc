@@ -1,0 +1,12 @@
+---
+description: When and how to update product docs and architecture notes. Use when changing behavior, boundaries, setup, or security assumptions.
+alwaysApply: false
+---
+
+# Documentation Maintenance
+
+- Keep docs short and true. Prefer updating existing docs over new ones.
+- Per product: `README.md`, `docs/architecture.md`, `docs/security.md`, `docs/decisions/` (ADRs only when consequential), `.env.example`.
+- Tiny: usually no doc change. Normal+: update architecture (and README if setup/commands change) when behavior or boundaries change. Sensitive: also refresh security assumptions.
+- Do not leave architecture docs stale after a main-flow change.
+- Detail: `standards/documentation.md`.

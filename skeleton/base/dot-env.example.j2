@@ -1,0 +1,9 @@
+# Copy to .env and set real values locally. Do not commit .env.
+{% if has_db %}
+DATABASE_URL=sqlite:///./data/app.sqlite
+{% endif %}
+{% if has_api %}
+# API_HOST=127.0.0.1
+# API_PORT=8000
+{% endif %}
+# Add product-specific variables below (names only in this file).

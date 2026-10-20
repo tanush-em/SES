@@ -1,0 +1,12 @@
+---
+description: Security baseline, sensitive paths, and human approval for prod/destructive ops
+alwaysApply: true
+---
+
+# Security & Sensitive Ops
+
+- Secrets only in `.env` (gitignored). Ship `.env.example` with names only. Never paste production secrets into chat.
+- Treat as **sensitive** if the change touches: auth/authz/tenant isolation, payments, PII, crypto/secrets, destructive data/migrations, production config/access. When unsure → sensitive.
+- Sensitive: plan must say `risk: sensitive` + blast radius; **wait for human approval** before implementing; review with security checklist.
+- Always ask before production or destructive operations. Do not weaken authz casually.
+- Detail: `standards/security-baseline.md`. Skills: `/feature-planning`, `/independent-review`.

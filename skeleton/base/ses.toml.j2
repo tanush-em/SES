@@ -1,0 +1,70 @@
+# Local checks for {{ name }}. Run: ses check --product {{ name }}
+# Exit codes from ses check: 0=pass, 1=fail, 2=not configured
+
+[product]
+name = "{{ name }}"
+risk = "{{ risk }}"
+
+[checks]
+{% if has_python %}
+[[checks.steps]]
+name = "python-format"
+cwd = "backend"
+command = ["ruff", "format", "--check", "."]
+
+[[checks.steps]]
+name = "python-lint"
+cwd = "backend"
+command = ["ruff", "check", "."]
+
+[[checks.steps]]
+name = "python-test"
+cwd = "backend"
+command = ["pytest", "-q"]
+{% endif %}
+
+{% if has_lib %}
+[[checks.steps]]
+name = "lib-typecheck"
+cwd = "lib"
+command = ["npm", "run", "typecheck"]
+
+[[checks.steps]]
+name = "lib-test"
+cwd = "lib"
+command = ["npm", "test"]
+{% endif %}
+
+{% if has_ts_api %}
+[[checks.steps]]
+name = "server-typecheck"
+cwd = "server"
+command = ["npm", "run", "typecheck"]
+
+[[checks.steps]]
+name = "server-test"
+cwd = "server"
+command = ["npm", "test"]
+{% endif %}
+
+{% if has_ui %}
+[[checks.steps]]
+name = "web-typecheck"
+cwd = "web"
+command = ["npm", "run", "typecheck"]
+
+[[checks.steps]]
+name = "web-test"
+cwd = "web"
+command = ["npm", "test"]
+{% endif %}
+
+[[checks.steps]]
+name = "secret-scan"
+type = "secret-scan"
+
+{% if risk == "commercial" %}
+[[checks.steps]]
+name = "architecture-doc"
+type = "architecture-doc"
+{% endif %}

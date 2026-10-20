@@ -1,0 +1,53 @@
+# {{ name }}
+
+{{ purpose }}
+
+## Setup
+
+{% if has_python %}
+### Python (backend)
+
+```bash
+cd backend
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+pip install -e ".[dev]"
+```
+{% endif %}
+
+{% if has_typescript or has_ui %}
+### TypeScript / web
+
+```bash
+{% if has_ui %}cd web && npm install{% endif %}
+{% if has_lib %}cd lib && npm install{% endif %}
+{% if has_ts_api %}cd server && npm install{% endif %}
+```
+{% endif %}
+
+Copy `.env.example` to `.env` and fill in values locally. Never commit `.env`.
+
+## SES toolkit
+
+```bash
+pip install ses-cli
+ses setup          # Cursor rules + skills (gitignored; re-run after clone/upgrade)
+ses setup --docs   # optional: .ses/standards/
+ses check          # from this directory
+```
+
+## Modules enabled
+
+- Languages: {{ languages | join(', ') }}
+- HTTP API: {{ 'yes' if has_api else 'no' }}
+- Web UI: {{ 'yes' if has_ui else 'no' }}
+- Database: {{ 'yes' if has_db else 'no' }} (SQLite)
+- Risk posture: {{ risk }}
+{% if sensitive %}
+- Sensitive domains (seeded): {{ sensitive | join(', ') }}
+{% endif %}
+
+## Docs
+
+- [Architecture](docs/architecture.md)
+- [Security](docs/security.md)

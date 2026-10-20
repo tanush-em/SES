@@ -1,0 +1,13 @@
+---
+description: Local verification, evidence, and ses check expectations. Use when running tests, claiming quality, or finishing a feature.
+alwaysApply: false
+---
+
+# Testing & Verification
+
+- “Verified” means evidence: passed checks, or a short manual note (what / saw / untested). “Should work” is not evidence.
+- When `ses check` exists for the product, run it before calling work done. Until then, use the product’s native commands or state **not configured**.
+- Distinguish **pass / fail / not configured**. Not configured ≠ pass.
+- Never claim checks passed without running them. Do not leak secrets in check output.
+- Tiny: light check if available. Normal/sensitive: tests for the change + checks + explainable flow.
+- Detail: `standards/testing-and-verification.md`, `standards/definition-of-done.md`.

@@ -1,0 +1,25 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+node_modules/
+dist/
+build/
+*.egg-info/
+.DS_Store
+*.sqlite
+*.db
+coverage/
+.turbo/
+*.log
+
+# SES regenerable (restore with: ses setup)
+.cursor/rules/ses-*.mdc
+.cursor/skills/feature-planning/
+.cursor/skills/feature-implementation/
+.cursor/skills/independent-review/
+.ses/

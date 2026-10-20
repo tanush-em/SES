@@ -1,0 +1,23 @@
+---
+description: SES kit repo layout (this repository only)
+alwaysApply: true
+---
+
+# SES Kit Layout
+
+This repository is the **SES kit** (not a home for product apps):
+
+```text
+standards/           # shared engineering standards (source of truth)
+.cursor/rules/       # Cursor rules for kit development
+.cursor/skills/      # feature-planning, feature-implementation, independent-review
+skeleton/            # universal product skeleton + modules
+templates/           # product-facing Cursor templates for `ses setup`
+packages/ses-cli/    # ses init, ses setup, ses check (pip: ses-cli)
+docs/                # setup, questionnaire, publishing, pilot lessons
+```
+
+- Real products are **separate repos**. Scaffold with `ses init` in the product cwd; refresh Cursor kit with `ses setup`.
+- Do not nest apps under a kit `products/` folder for normal use.
+- Kit rules/skills live under `.cursor/` so Cursor discovers them while developing SES itself.
+- Do not create cloud resources, commit secrets, or overwrite a non-empty product cwd without explicit `--force`.

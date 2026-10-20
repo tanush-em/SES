@@ -1,0 +1,8 @@
+import { describe, expect, it } from "vitest";
+import { healthPayload } from "./index.js";
+
+describe("health", () => {
+  it("returns ok", () => {
+    expect(healthPayload()).toEqual({ status: "ok", product: "{{ name }}" });
+  });
+});

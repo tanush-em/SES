@@ -1,0 +1,20 @@
+"""SQLite helper for {{ name }}."""
+
+from __future__ import annotations
+
+import os
+import sqlite3
+from pathlib import Path
+
+
+def database_path() -> Path:
+    url = os.environ.get("DATABASE_URL", "sqlite:///./data/app.sqlite")
+    if url.startswith("sqlite:///"):
+        return Path(url.removeprefix("sqlite:///"))
+    return Path("data/app.sqlite")
+
+
+def connect() -> sqlite3.Connection:
+    path = database_path()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    return sqlite3.connect(path)

@@ -1,0 +1,9 @@
+/** SQLite path helper for {{ name }}. Open the DB with your preferred driver. */
+
+export function databasePath(): string {
+  const url = process.env.DATABASE_URL ?? "sqlite:///./data/app.sqlite";
+  if (url.startsWith("sqlite:///")) {
+    return url.slice("sqlite:///".length);
+  }
+  return "data/app.sqlite";
+}
