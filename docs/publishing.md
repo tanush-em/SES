@@ -26,10 +26,19 @@ Vendored data under `packages/ses-cli/src/ses_cli/data/` must be present (sync c
 
 ## Upload (requires your PyPI credentials)
 
+As of v1.0.0 tag: wheel/sdist build verified locally; **PyPI upload not run** (no `~/.pypirc` / `TWINE_*` credentials in this environment). When you have a token:
+
 ```bash
 cd packages/ses-cli
 twine upload dist/*
 # or: TWINE_USERNAME=__token__ TWINE_PASSWORD=pypi-... twine upload dist/*
+```
+
+Until then, install from the built wheel or the kit repo:
+
+```bash
+pip install /path/to/SES/packages/ses-cli/dist/ses_cli-1.0.0-py3-none-any.whl
+# or: pip install -e /path/to/SES/packages/ses-cli
 ```
 
 Do not commit tokens. Prefer Trusted Publishing later if desired.
